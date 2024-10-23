@@ -125,7 +125,7 @@ Resources:
       ImageId: ami-06b21ccaeff8cd686
       SecurityGroupIds:
         - !Ref MySecurityGroup
-      KeyName: task_ms_config
+      KeyName: roczyno
 
   # Private EC2 Instance
   PrivateEC2Instance:
@@ -133,7 +133,7 @@ Resources:
     Properties:
       InstanceType: t2.micro
       SubnetId: !Ref PrivateSubnet
-      ImageId: ami-06b21ccaeff8cd686 # Amazon Linux 2 AMI ID (Region-specific)
+      ImageId: ami-06b21ccaeff8cd686
       SecurityGroupIds:
         - !Ref MySecurityGroup
-      KeyName: task_ms_config
+      KeyName: roczyno
