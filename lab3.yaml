@@ -16,6 +16,10 @@ Resources:
   # Internet Gateway
   MyInternetGateway:
     Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: MyInternetGateway
 
   AttachGateway:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -80,12 +84,19 @@ Resources:
   # NAT Gateway for Private Subnet
   MyEIP:
     Type: AWS::EC2::EIP
+    Properties:
+      Tags:
+        - Key: Name
+          Value: MyEIP
 
   MyNATGateway:
     Type: AWS::EC2::NatGateway
     Properties:
       SubnetId: !Ref PublicSubnet
       AllocationId: !GetAtt MyEIP.AllocationId
+      Tags:
+        - Key: Name
+          Value: MyNATGateway
 
   PrivateRoute:
     Type: AWS::EC2::Route
@@ -115,6 +126,9 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: MySecurityGroup
 
   # Public EC2 Instance
   PublicEC2Instance:
@@ -126,6 +140,9 @@ Resources:
       SecurityGroupIds:
         - !Ref MySecurityGroup
       KeyName: roczyno
+      Tags:
+        - Key: Name
+          Value: PublicEC2Instance
 
   # Private EC2 Instance
   PrivateEC2Instance:
@@ -137,3 +154,6 @@ Resources:
       SecurityGroupIds:
         - !Ref MySecurityGroup
       KeyName: roczyno
+      Tags:
+        - Key: Name
+          Value: PrivateEC2Instance
